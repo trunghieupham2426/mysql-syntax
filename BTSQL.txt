@@ -1,0 +1,115 @@
+1. SELECT DISTINCT TenBenhNhan FROM benh_nhan;
+
+2. SELECT DISTINCT TenBenhNhan FROM benh_nhan ORDER BY NamSinh;
+
+3. SELECT COUNT(DISTINCT MaBenhNhan) AS SoBenhNhan, TenBacSi FROM benh_an
+	JOIN bac_si
+	ON benh_an.MaBSDieuTri = bac_si.MaBacSi
+	GROUP BY bac_si.TenBacSi
+	Having SoBenhNhan >=5;
+	
+4. SELECT TenBacSi, COUNT(*) AS BenhNhan FROM bac_si
+	JOIN benh_an
+	ON bac_si.MaBacSi = benh_an.MaBSDieuTri
+	WHERE bac_si.QueQuan NOT LIKE '%binhduong%'
+	GROUP BY bac_si.TenBacSi
+	Having BenhNhan >= 5;
+
+5. SELECT TenBacSi FROM bac_si WHERE TenBacSi LIKE '%LUAT' && TenBacSi NOT LIKE 'PHAM%';
+
+
+6. SELECT TenKhoa FROM khoa WHERE LENGTH(TenKhoa) >= 10 && TenKhoa LIKE '%H';
+
+7. 	SELECT TenBacSi , MaBenhNhan FROM bac_si
+	LEFT JOIN benh_an
+	ON bac_si.MaBacSi = benh_an.MaBSDieuTri
+	WHERE benh_an.MaBenhNhan IS NULL;
+	
+8. insert data.....
+
+9. UPDATE benh_an SET MaBSDieuTri = 'NULL' WHERE YEAR(NgayRaVien) < 2010 ;
+
+10. DELETE benh_nhan FROM benh_nhan 
+	LEFT JOIN benh_an
+	ON benh_nhan.MaBenhNhan = benh_an.MaBenhNhan
+	WHERE benh_an.MaBenhNhan IS NULL;
+	
+	
+11. DELETE FROM bac_si WHERE NamSinh BETWEEN 1920 AND 1950;
+ 
+12.  SELECT 'Bac Si' AS TYPE , TenBacSi AS Ten , GioiTinh FROM bac_si 
+	UNION ALL 
+	SELECT 'Benh Nhan' ,TenBenhNhan, GioiTinh FROM benh_nhan ; 
+	
+13. SELECT TenBacSi AS Ten FROM bac_si
+	UNION 
+	SELECT TenBenhNhan  FROM benh_nhan ;
+	
+14. SELECT benh_an.MaBenhNhan , benh_nhan.TenBenhNhan , 
+			bac_si.TenBacSi , IFNULL(khoa.TenKhoa,'Chua Co Khoa') FROM benh_an
+			JOIN benh_nhan
+			ON benh_an.MaBenhNhan = benh_nhan.MaBenhNhan	
+			JOIN bac_si
+			ON benh_an.MaBSDieuTri = bac_si.MaBacSi
+			LEFT JOIN khoa
+			ON bac_si.MaBacSi = khoa.MaBSTruongKhoa
+			GROUP BY bac_si.MaBacSi , benh_nhan.TenBenhNhan
+			ORDER BY benh_an.MaBenhNhan ;
+		
+15. 
+
+
+16. SELECT COUNT(*), GioiTinh FROM(
+	SELECT  GioiTinh FROM bac_si 
+	UNION ALL 
+	SELECT  GioiTinh FROM benh_nhan) AS t
+	GROUP BY GioiTinh;
+	
+17. SELECT MaKhoa , TenKhoa ,
+	CASE 
+		WHEN MaBSTruongKhoa IS NULL OR MaBSTruongKhoa = '' THEN 'chua co'
+		ELSE MaBSTruongKhoa
+	END
+	FROM khoa;
+	
+18. 
+	
+
+
+
+
+	
+
+
+
+
+
+
+	
+CREATE TABLE login(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(20)
+);
+
+INSERT INTO login(name) VALUES('a'),('b'),('e'),('f');
+
+
+
+SELECT  ten1 as ten FROM
+(SELECT regis.name as ten1, login.name as ten2 FROM regis
+LEFT JOIN login
+ON regis.name = login.name
+HAVING login.name IS NULL
+) as t1 
+
+UNION
+
+SELECT  ten2 FROM
+(SELECT regis.name as ten1, login.name as ten2 FROM regis
+RIGHT JOIN login
+ON regis.name = login.name
+HAVING ten1 IS NULL
+) as t2 ;
+
+
+mysql -u root -p

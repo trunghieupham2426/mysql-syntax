@@ -1,0 +1,28 @@
+READING
+
+chọn tất cả cột trong table để hiển thị
+SELECT * FROM table_name
+
+chọn một hoặc nhiều cột cụ thể để hiển thị
+SELECT column_name1,column_name2... FROM table_name
+
+sử dụng WHERE để ra điều kiện cụ thể
+
+SELECT * FROM table_name WHERE column_name= any_value ;
+
+============================
+
+UPDATE
+
+UPDATE table_name SET column_name1=update_value, column_name2=update_value... WHERE column_name= value;
+
+vd UPDATE cats SET breed='Shorthair' WHERE breed='Tabby';
+
+========================
+DELETE
+
+DELETE FROM table_name WHERE column_name=value
+vd : DELETE FROM cats WHERE name='egg';
+
+chú ý DELETE FROM table_name; lệnh này sẽ xóa sạch dữ liệu đã nhập trong table đó .
+

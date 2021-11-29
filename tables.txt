@@ -1,0 +1,83 @@
+tạo table
+
+CREATE TABLE tablename
+  (
+    column_name data_type,
+    column_name data_type
+  );
+  
+  
+CHÚ Ý , khi tạo TABLE , nếu muốn column có giá trị khác NULL thì thêm NOT NULL 
+CREATE TABLE tablename
+  (
+    column_name data_type NOT NULL,
+    column_name data_type NOT NULL
+  );
+  
+Chú ý , khi thêm NOT NULL vào , kể cả khi có DEFAULT cũng ok . bởi vì làm vậy sẽ ko insert
+giá trị NULL vào được . nếu ko có NOT NULL thì sẽ insert NULL vào được
+  
+CREATE TABLE cats3
+  (
+    name VARCHAR(20) NOT NULL DEFAULT 'no name provided',
+    age INT DEFAULT 99
+  )
+CREATE TABLE unique_cats2 (
+    cat_id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(100),
+    age INT,
+    PRIMARY KEY (cat_id)
+);
+  
+CREATE TABLE cats
+  (
+    name VARCHAR(100),
+    age INT
+  );
+  
+===========================================
+
+kiểm tra table
+
+SHOW TABLES;
+
+
+==============================================
+
+các lệnh khác
+
+SHOW COLUMNS FROM tablename;
+
+DESC tablename; 
+
+2 lệnh phía trên tương đương nhau
+
+==============================================
+
+xóa table
+
+DROP TABLE tablename;
+
+
+===========================================
+
+thêm data vào table , chú ý phải đúng thứ tự column_name
+
+INSERT INTO table_name(column_name1 ,column_name2 ... ) 
+VALUES (data_colum1 ,data_colum2 ... );
+
+INSERT INTO table_name 
+            (column_name, column_name) 
+VALUES      (value, value), 
+            (value, value), 
+            (value, value);
+ 
+==========================================
+
+kiểm tra warnings;
+
+SHOW WARNINGS;
+
+==============================================
+
+

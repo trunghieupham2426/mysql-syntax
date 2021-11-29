@@ -1,0 +1,15 @@
+CREATE DATABASE name_database
+vd : CREATE DATABASE pet_shop;
+
+Xóa databases;
+DROP DATABASE name_database
+vd : DROP DATABASE pet_shop;
+
+Sử dụng database
+USE name_database
+USE pet_shop
+
+Kiểm tra database đang được sử dụng
+SELECT database();
+
+
